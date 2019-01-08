@@ -1,0 +1,174 @@
+<div class="container">
+  <h2>Shop</h2>
+  <div class="row">
+    <div class="col-md-2">
+      <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-10">
+        <div class="text-right">
+            <span id="buttonalign"  ><i class="fa fa-plus-circle " aria-hidden="true" data-toggle="modal" data-target="#shopModal"></i></span>
+        </div>
+      <div class="row">
+        <div class="col-sm-3" *ngFor="let shop of listshop">
+          <div class="card" >
+             <img class="card-img-top" src="{{shop.productImage}}" alt="Card image" id="cardimg">
+              <div class="card-body">
+                <h4 class="card-title">{{shop.productName}}</h4>
+                <i class="fa fa-pencil-alt" id="edit" aria-hidden="true" (click)="edititemshop(shop.id)" data-toggle="modal"
+                    data-target="#editshop"></i>
+                <i class="fa fa-eye" aria-hidden="true" (click)="viewitemshop(shop.id)" data-toggle="modal" data-target="#viewshop"></i>
+                <i class="fa fa-trash" aria-hidden="true" (click)="deleteitemshop(shop.id)"></i>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="" style="margin-top:50px">
+          <button type="button" class="btn btn-primary  " id="previous" (click)="previousshop()" [disabled]="check"  >previous</button>
+          <button type="button" class="btn btn-primary  " id="next" (click)="nextshop()" [disabled]="checknext">next</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- for model -->
+<div class="modal" id="shopModal" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>Shop</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+            <label for="ProductName">ProductName:</label>
+            <textarea type="text" id="ProductName" class="form-control form-rounded" name="ProductName" (change)="name($event)"
+            required></textarea><br>
+            <label for="ProductDetails">ProductDetails:</label>
+            <textarea type="text" id="ProductDetails" class="form-control form-rounded" name="ProductDetails" (change)="details($event)"
+            required></textarea><br>
+            <label for="image">ProductImage: </label>
+            <input id="cin" name="file" type="file" (change)="Image($event)"
+            placeholder="Upload a file..." multiple />
+            <br><label for="ProductPrice">ProductPrice: </label>
+            <textarea type="text" id="ProductPrices" class="form-control form-rounded" name="ProductPrice" (change)="price($event)"
+            required></textarea>
+            <br><div class="text-center">
+                <button type="button" class="btn btn-success btn-s" (click)="onShop()">Upload</button>
+            </div>
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- view model -->
+<!-- for model -->
+<div class="modal" id="viewshop" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>Shop</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <span class="image">ProductImage: </span>
+                  <img src="{{viewshop.productImage}}" width="150px" height="150px">
+                  <br><span class="image">ProductName: </span> {{viewshop.productName}}
+                  <br><span class="image">ProductDetails:</span>{{viewshop.productDetails}}
+                  <br> <span class="image">ProductPrice:</span>{{viewshop.productPrice}}
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- edit model -->
+<!-- for model -->
+<div class="modal" id="editshop" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>Shop</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <label>id:</label>
+                  <input type="text" class="form-control" value={{editshop.id}} (change)="editId($event)" readonly><br>
+                  <label for="ProductName">ProductName:</label>
+            <textarea type="text" id="ProductName" class="form-control form-rounded" name="ProductName" (change)="name($event)"
+            required></textarea><br>
+            <label for="ProductDetails">ProductDetails:</label>
+            <textarea type="text" id="ProductDetails" class="form-control form-rounded" name="ProductDetails" (change)="details($event)"
+            required></textarea><br>
+            <label for="image">ProductImage: </label>
+            <input id="cin" name="file" type="file" (change)="Image($event)"
+            placeholder="Upload a file..." multiple />
+            <br><label for="ProductPrice">ProductPrice: </label>
+            <textarea type="text" id="ProductPrices" class="form-control form-rounded" name="ProductPrice" (change)="price($event)"
+            required></textarea><br>
+                  <button type="button" class="btn btn-success btn-s" (click)="Save()">
+                    SaveChanges
+                  </button>
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

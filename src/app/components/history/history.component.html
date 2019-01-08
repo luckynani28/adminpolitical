@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>History</h2>
+  <div class="row">
+    <div class="col-md-2">
+        <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-10">
+        <section id="tabs">
+          <div class="container">
+            <h6 class="section-title h1"></h6>
+            <div class="row">
+              <div class="col-xs-12 ">
+                <nav>
+                  <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                    <a class="nav nav-tabs active" [class.active]="viewMode == 'tab1'"
+                     rel="tab1" (click)="viewMode ='tab1'"> Content </a>
+                     <a class="nav nav-tabs " [class.active]="viewMode == 'tab2'"
+                     rel="tab2" (click)="viewMode ='tab2'" id="Gallery"> Gallery </a>
+                     <a class="nav nav-tabs " [class.active]="viewMode == 'tab3'"
+                     rel="tab3" (click)="viewMode ='tab3'" id="Videos"> Videos </a>
+                  </div>
+                </nav>
+                <div class="tab-slider--container" [ngSwitch]="viewMode">
+                <div id="tab1" class="tab-slider--body " *ngSwitchCase="'tab1'">
+                  <app-historycontent></app-historycontent>
+                </div>
+                <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                   <app-historygallery></app-historygallery>
+                </div>
+                <div id="tab3" class="tab-slider- -body" *ngSwitchCase="'tab3'">
+                    <app-historyvideos></app-historyvideos>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,256 @@
+<h5>History gallery</h5>
+<div class="text-right">
+    <span id="buttonalign"  ><i class="fa fa-plus-circle " aria-hidden="true" data-toggle="modal" data-target="#modelgallery"></i></span>
+</div>
+<div class="container">
+  <div class="row">
+        <div class="col-md-3" *ngFor="let gall of listnewsgallery" >
+
+      <div class="card" >
+         <img class="card-img-top" src="{{gall.image}}" alt="Card image" id="cardimg" class="responsive">
+         <div class="card-body">
+           <h6 class="card-title">{{gall.subject}}</h6>
+            <i class="fa fa-pencil-alt" id="edit" aria-hidden="true" (click)="edititemnewsgalllery(gall.id)" data-toggle="modal"
+                data-target="#editgalley"></i>
+              <i class="fa fa-eye" aria-hidden="true" (click)="viewitemhistorygallery(gall.id)" data-toggle="modal" data-target="#viewgallery"></i>
+             <i class="fa fa-trash" aria-hidden="true" (click)="deleteitemnewsgallery(gall.id)"></i>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="" style="margin-top:50px">
+    <button type="button" class="btn btn-primary  " id="previous" (click)="previousnewsgallery()" [disabled]="check"  >previous</button>
+    <button type="button" class="btn btn-primary  " id="next" (click)="nextnewsgallery()" [disabled]="checknext">next</button>
+  </div>
+
+
+
+<!-- for model -->
+<div class="modal" id="modelgallery" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>HistoryGallery</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+            <label for="subject">subject:</label>
+            <textarea type="text" id="subject" class="form-control form-rounded" name="subject" (change)="subjectgallery($event)"
+            required></textarea><br>
+            <label for="image">Image: </label>
+            <input id="cin" name="file" type="file" (change)="Imagegallery($event)"
+            placeholder="Upload a file..." multiple />
+            <br><br>
+            <div class="text-center">
+                <button type="button" class="btn btn-success btn-s" data-dismiss="modal" data-toggle="modal" data-target="#rewardhisgallmodel" (click)="onGallery()">Upload</button>
+            </div>
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- view model -->
+<!-- for model -->
+<div class="modal" id="viewgallery" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>HistoryGallery</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <span class="image">Image: </span>
+                  <img src="{{viewhistorygallery.image}}" width="150px" height="150px">
+                  <br><span class="image">subject: </span> {{viewhistorygallery.subject}}
+                  <br><span class="image">Minimum Time Spend:</span> {{viewrewardhisgall.mintimetospend}}
+                  <br><span class="image">Click:</span> {{viewrewardhisgall.click}}
+                  <br><span class="image">Time Speed:</span> {{viewrewardhisgall.timespend}}
+                  <br><span class="image">Like:</span> {{viewrewardhisgall.like}}
+                  <br><span class="image">Share:</span> {{viewrewardhisgall.share}}
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- edit model -->
+<!-- for model -->
+<div class="modal" id="editgalley" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>HistoryGallery</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <label>id:</label>
+                  <input type="text" class="form-control" value={{editnewsgallery.id}} (change)="editId($event)" readonly><br>
+                  <label for="subject">subject:</label>
+            <textarea type="text" id="subject" class="form-control form-rounded" name="subject" (change)="subjectgallery($event)"
+            required></textarea><br>
+            <label for="image">Image: </label>
+            <input id="cin" name="file" type="file" (change)="Imagegallery($event)"
+            placeholder="Upload a file..." multiple />
+            <br><br>
+                  <button type="button" class="btn btn-success btn-s" data-dismiss="modal" data-toggle="modal" data-target="#editrewardhisgallmodel"(click)="Save()">
+                    SaveChanges
+                  </button>
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- for reward model -->
+<div class="modal" id="rewardhisgallmodel" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>HistoryGallery</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+          <label for="subject">Content Id:</label>
+          <input type="text" id="subject" class="form-control form-rounded" value={{contentrew.contentid}}  name="subject"  [(ngModel)]="contentrew.contentid" readonly >
+          <label for="content">Minimum Time Spend:</label>
+          <input type="text" id="content" class="form-control form-rounded" name="content"  [(ngModel)]="contentrew.mintimetospend" required>
+          <label for="tags">Click: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags"  [(ngModel)]="contentrew.click" required>
+          <label for="tags">Time Speed: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="contentrew.timespend" required>
+          <label for="tags">Like: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="contentrew.like" required>
+          <label for="tags">Share: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="contentrew.share" required>
+          <br><div class="text-center">
+              <button type="button" class="btn btn-success btn-s" (click)="onReward()">Upload</button>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- edit reward model -->
+<!-- for model -->
+<div class="modal" id="editrewardhisgallmodel" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>HistoryGalleryRewardEdit</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                 <label>id:</label>
+                <input type="text" class="form-control" value={{contentrew.contentid}} [(ngModel)]="contentrew.contentid" readonly><br>
+                <label for="content">Minimum Time Spend:</label>
+              <input type="text" id="content" class="form-control form-rounded" name="content"  [(ngModel)]="contentrew.mintimetospend" required>
+                <label for="tags">Click: </label>
+                <input type="text" id="tags" class="form-control form-rounded" name="tags"  [(ngModel)]="contentrew.click" required>
+                <label for="tags">Time Speed: </label>
+                 <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="contentrew.timespend" required>
+                <label for="tags">Like: </label>
+                <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="contentrew.like" required>
+               <label for="tags">Share: </label><br>
+              <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="contentrew.share" required>
+                <br><button type="button" class="btn btn-success btn-s" (click)="SaveReward()">
+                  SaveChanges
+                </button>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

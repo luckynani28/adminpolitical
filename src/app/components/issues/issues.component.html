@@ -1,0 +1,78 @@
+<div class="container">
+    <h2>Issues</h2>
+    <div class="row">
+      <div class="col-md-2">
+          <app-navigation></app-navigation>
+      </div>
+      <div class="col-md-10">
+          <table class="table">
+              <thead>
+                <tr class="text-center" id="heading">
+                  <th>Subject</th>
+                  <th>Issue</th>
+                  <th>Image</th>
+
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of listissues" >
+                <tr>
+                  <td class="sub">{{item.subject}}</td>
+                  <td>{{item.issue}}</td>
+                  <td><img src="{{item.image}}" width="100px" height="100px"></td>
+                  <td data-toggle="modal" data-target="#viewmodel" (click)="viewissuedata(item.id)"><i class="far fa-eye"></i></td>
+                </tr>
+
+              </tbody>
+            </table>
+      </div>
+
+      <div style="margin-top:50px;margin-left:150px;">
+        <button type="button" class="btn btn-primary " id="previous" (click)="previous()" [disabled]="check"  >previous</button>
+        <button type="button" class="btn btn-primary " id="next" (click)="next()" [disabled]="checknext">next</button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+   <!-- view model -->
+<!-- for model -->
+<div class="modal" id="viewmodel" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>issue</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <span class="image">Image: </span>
+                  <img src="{{viewissue.image}}" class="responsive">
+                  <br><span class="image">subject: </span> {{viewissue.subject}}
+                  <br><span class="image">content:</span><p>{{viewissue.issue}}</p>
+
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

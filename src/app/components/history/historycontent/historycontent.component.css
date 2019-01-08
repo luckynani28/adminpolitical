@@ -1,0 +1,38 @@
+.fa  {
+    font-size: 20px;
+    margin-left: 20px;
+    color: #0570B2;
+    }
+    #buttonalign i {
+      font-size: 50px;
+      color: black;
+    }
+    .card {
+      /* width: 180px;
+      height: 250px; */
+      margin-left: 20px;
+      margin-bottom: 20px;
+      box-shadow: 5px 5px 10px grey;
+    }
+    label{
+      font-weight: bold;
+    }
+  span{
+    color: #0570B2;
+    font-weight: bold;
+  }
+  p{
+  text-align: justify;
+  }
+  h6{
+  text-align: center;
+  }
+  .responsive{
+    width: 100%;
+    height: auto;
+    }
+    h5{
+      text-align: center;
+      font-style: italic;
+      color: #A01E63;
+      }

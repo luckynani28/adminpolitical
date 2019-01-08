@@ -1,0 +1,90 @@
+<div class="container">
+  <h2>News</h2>
+  <div class="row">
+    <div class="col-md-2">
+        <app-navigation></app-navigation>
+    </div>
+    <div class="col-md-10">
+        <section id="tabs">
+          <div class="container">
+            <h6 class="section-title h1"></h6>
+            <div class="row">
+              <div class="col-xs-12 ">
+                <nav>
+                  <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                    <a class="nav nav-tabs" id = "Content" [class.active]="viewMode == 'tab1'"
+                     rel="tab1" (click)="viewMode ='tab1'"> Content </a>
+                     <a class="nav nav-tabs " id="Gallery" [class.active]="viewMode == 'tab2'"
+                     rel="tab2" (click)="viewMode ='tab2'"> Gallery </a>
+                     <a class="nav nav-tabs " id="Videos" [class.active]="viewMode == 'tab3'"
+                     rel="tab3" (click)="viewMode ='tab3'"> Videos </a>
+                  </div>
+                </nav>
+                <div class="tab-slider--container" [ngSwitch]="viewMode">
+                <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+                    <app-content></app-content>
+                </div>
+                <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                    <app-gallery></app-gallery>
+                </div>
+                <div id="tab3" class="tab-slider- -body" *ngSwitchCase="'tab3'">
+                    <app-videos></app-videos>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+    <h2>News</h2>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <tabs>
+          <div>
+          <tab tabTitle="content">
+           <app-content></app-content>
+          </tab>
+        </div>
+        <div>
+          <tab tabTitle="gallery">
+              <app-gallery></app-gallery>
+
+          </tab>
+        </div>
+
+  </tabs>
+      </div>
+    </div>
+  </div> -->
+
+
+ <!-- <div class="container">
+    <h2>news</h2>
+    <div class="row">
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-10">
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" routerLink="/gallery">gallery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" routerLink="/content">content</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+              </li>
+            </ul>
+      </div>
+    </div>
+  </div>
+ -->
+
+
+

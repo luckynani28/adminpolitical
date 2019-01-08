@@ -1,0 +1,275 @@
+<h5>news videos</h5>
+<div class="text-right">
+    <span id="buttonalign"  ><i class="fa fa-plus-circle " aria-hidden="true" data-toggle="modal" data-target="#modelvideo"></i></span>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of listnewsvideo" >
+      <div class="card" >
+         <img class="card-img-top" src="{{item.thumbnailImage}}" alt="Card image" id="cardimg">
+         <div class="card-body">
+           <h4 class="card-title">{{item.title}}</h4>
+            <i class="fa fa-pencil-alt" id="edit" aria-hidden="true" (click)="edititemvideo(item.id)" data-toggle="modal"
+                data-target="#editvideo"></i>
+              <i class="fa fa-eye" aria-hidden="true" (click)="viewitemvideo(item.id)" data-toggle="modal" data-target="#viewvideo"></i>
+             <i class="fa fa-trash" aria-hidden="true" (click)="deleteitemvideo(item.id)"></i>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="" style="margin-top:50px">
+    <button type="button" class="btn btn-primary  " id="previous" (click)="previousnewsvideo()" [disabled]="check"  >previous</button>
+    <button type="button" class="btn btn-primary  " id="next" (click)="nextnewsvideo()" [disabled]="checknext">next</button>
+  </div>
+
+
+
+<!-- for model -->
+<div class="modal" id="modelvideo" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>NewsVideo</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+            <label for="title">title:</label>
+            <textarea type="text" id="title" class="form-control form-rounded" name="title" (change)="titlenews($event)"
+            required></textarea><br>
+            <label for="videoUrl">videoUrl:</label>
+            <textarea type="text" id="videoUrl" class="form-control form-rounded" name="videoUrl" (change)="videoUrlnews($event)"
+            required></textarea><br>
+            <label for="videoId">videoId:</label>
+            <textarea type="text" id="videoId" class="form-control form-rounded" name="videoId" (change)="videoIdnews($event)"
+            required></textarea><br>
+            <label for="thumbnailImage">thumbnailImage: </label>
+            <input id="cin" name="file" type="file" (change)="Imagenews($event)"
+            placeholder="Upload a file..." multiple />
+            <br><br>
+            <div class="text-center">
+                <button type="button" class="btn btn-success btn-s" data-dismiss="modal" data-toggle="modal" data-target="#rewardnesvideosmodel" (click)="onVideo()">Upload</button>
+            </div>
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- view model -->
+<!-- for model -->
+<div class="modal" id="viewvideo" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>NewsVideo</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <span class="image">Image: </span>
+                  <img src="{{viewnewsvideo.thumbnailImage}}" width="150px" height="150px">
+                  <br><span class="image">title: </span> {{viewnewsvideo.title}}
+                  <br><span class="image">videoUrl: </span> {{viewnewsvideo.videoUrl}}
+                  <br><span class="image">videoId: </span> {{viewnewsvideo.videoId}}
+                  <br><span class="image">Content Id: </span> {{viewvideoreward.contentid}}
+                   <br><span class="image">Minimum Time Spend:</span> {{viewvideoreward.mintimetospend}}
+                   <br><span class="image">Click:</span> {{viewvideoreward.click}}
+                   <br><span class="image">Time Speed:</span> {{viewvideoreward.timespend}}
+                   <br><span class="image">Like:</span> {{viewvideoreward.like}}
+                   <br><span class="image">Share:</span> {{viewvideoreward.share}}
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- edit model -->
+<!-- for model -->
+<div class="modal" id="editvideo" class="modal fade">
+    <div class="modal-dialog model-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <h5>NewsVideo</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- form starting code  -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                  <label>id:</label>
+                  <input type="text" class="form-control" value={{editnewsvideo.id}} (change)="editId($event)" readonly><br>
+                  <label for="title">title:</label>
+                  <textarea type="text" id="title" class="form-control form-rounded" name="title" (change)="titlenews($event)"
+                  required></textarea><br>
+                  <label for="videoUrl">videoUrl:</label>
+                  <textarea type="text" id="videoUrl" class="form-control form-rounded" name="videoUrl" (change)="videoUrlnews($event)"
+                  required></textarea><br>
+                  <label for="videoId">videoId:</label>
+                  <textarea type="text" id="videoId" class="form-control form-rounded" name="videoId" (change)="videoIdnews($event)"
+                  required></textarea><br>
+                  <label for="thumbnailImage">thumbnailImage: </label>
+                  <input id="cin" name="file" type="file" (change)="Imagenews($event)"
+                  placeholder="Upload a file..." multiple />
+                  <br><br>
+                  <button type="button" class="btn btn-success btn-s" data-dismiss="modal" data-toggle="modal" data-target="#editvideoreward"(click)="Save()">
+                    SaveChanges
+                  </button>
+              </div>
+            </div>
+          </div>
+          <!-- form ending code -->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- for reward model -->
+<div class="modal" id="rewardnesvideosmodel" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>NewsVideoRewards</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+          <label for="subject">Content Id:</label>
+          <input type="text" id="subject" class="form-control form-rounded" value={{videoreward.contentid}}  name="subject"  [(ngModel)]="videoreward.contentid" readonly >
+          <label for="content">Minimum Time Spend:</label>
+          <input type="text" id="content" class="form-control form-rounded" name="content"  [(ngModel)]="videoreward.mintimetospend" required>
+          <label for="tags">Click: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags"  [(ngModel)]="videoreward.click" required>
+          <label for="tags">Time Speed: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="videoreward.timespend" required>
+          <label for="tags">Like: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="videoreward.like" required>
+          <label for="tags">Share: </label>
+          <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="videoreward.share" required>
+          <br><div class="text-center">
+              <button type="button" class="btn btn-success btn-s" (click)="onRewardNewsVideos()">Upload</button>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- edit reward model -->
+<!-- for model -->
+<div class="modal" id="editvideoreward" class="modal fade">
+  <div class="modal-dialog model-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <h5>NewsVideoRewardEdit</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- form starting code  -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                 <label>id:</label>
+                <input type="text" class="form-control" value={{videoreward.contentid}} [(ngModel)]="videoreward.contentid" readonly><br>
+                <label for="content">Minimum Time Spend:</label>
+              <input type="text" id="content" class="form-control form-rounded" name="content"  [(ngModel)]="videoreward.mintimetospend" required>
+                <label for="tags">Click: </label>
+                <input type="text" id="tags" class="form-control form-rounded" name="tags"  [(ngModel)]="videoreward.click" required>
+                <label for="tags">Time Speed: </label>
+                 <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="videoreward.timespend" required>
+                <label for="tags">Like: </label>
+                <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="videoreward.like" required>
+               <label for="tags">Share: </label><br>
+              <input type="text" id="tags" class="form-control form-rounded" name="tags" [(ngModel)]="videoreward.share" required>
+                <br><button type="button" class="btn btn-success btn-s" (click)="SaveVideoReward()">
+                  SaveChanges
+                </button>
+            </div>
+          </div>
+        </div>
+        <!-- form ending code -->
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

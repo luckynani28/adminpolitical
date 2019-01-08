@@ -1,0 +1,19 @@
+h2{
+text-align: center;
+}
+label{
+font-weight: bold;
+}
+#Gallery {
+
+  padding-left: 300px;
+}
+#Videos {
+
+  padding-left: 400px;
+  }
+.nav{
+  color: #0578BB;
+  font-weight: bold;
+  font-size: 20px;
+}

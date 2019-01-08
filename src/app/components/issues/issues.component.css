@@ -1,0 +1,28 @@
+h2{
+  text-align: center;
+  }
+.sub {
+font-weight: bold;
+}
+#heading th{
+  color: #0578BB;
+}
+.far
+{
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+padding-top: 40px;
+}
+span{
+  color: #0578BB;
+  font-weight: bold;
+}
+p{
+text-align: justify;
+}
+.responsive
+{
+width: 100%;
+height: auto;
+}
